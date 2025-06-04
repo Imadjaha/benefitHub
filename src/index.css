@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+
+:root {
+    --bg-dark: #1F2937;
+    --bg-light: #F9FAFB;
+    --hover-bg-light: #E5E7EB;
+    --hover-bg-dark: #374151;
+    --hover-text-light: #374151;
+    --hover-text-dark: #F9FAFB;
+
+    /* Default theme variables */
+    --bg-color: var(--bg-light);
+    --text-color: var(--bg-dark);
+    --hover-bg: var(--hover-bg-light);
+    --hover-text: var(--hover-text-light);
+ 
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+/* Dark mode overrides */
+.dark {
+    --bg-color: var(--bg-dark);
+    --text-color: var(--bg-light);
+}
+
+/* Single theme class that handles both modes */
+.theme-bg {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.2s ease;
+}
+
+.hover-bg:hover {
+    background-color: var(--hover-bg-light);
+    color: var(--hover-text-light)
+}
+
+.dark .hover-bg:hover {
+    background-color: var(--hover-bg-dark);
+    color: var(--hover-text-dark)
+}
+
+body{
+  
+    /* AG Grid background override using dynamic variable */
+    --ag-background-color: var(--bg-color);
+    --ag-foreground-color: var(--text-color);
+}
