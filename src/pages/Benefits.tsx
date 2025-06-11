@@ -1,18 +1,22 @@
-import React from 'react'
-import Header from '../components/Header'
-import Snackbar from '../components/Snackbar'
-import ScrollUpButton from '../components/ScrollUpButton'
-import BenefitCard from '../components/BenefitCard'
-import BenefitsList from '../components/BenefitsList'
+import Snackbar from "../components/Snackbar";
+import ScrollUpButton from "../components/ScrollUpButton";
+import BenefitCard from "../components/BenefitCard";
+import BenefitsList from "../components/BenefitsList";
+import { motion } from "framer-motion";
 
 export default function Benefits() {
   return (
-    <div>
-        <Header title="Benefits" darkModeSwitcher/>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="w-full theme-bg min-h-screen"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollUpButton />
         {/* <BenefitCard/> */}
-        <BenefitsList/>
-
-    </div>
-  )
+        <BenefitsList />
+      </div>
+    </motion.div>
+  );
 }

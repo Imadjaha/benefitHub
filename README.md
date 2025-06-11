@@ -1,54 +1,83 @@
-# React + TypeScript + Vite
+# BenefitHub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern benefit management system built with React, TypeScript, and Vite. BenefitHub helps organizations manage and showcase their employee benefits and partner relationships.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- 🎨 Modern, responsive UI with dark mode support
+- ✨ Smooth animations and transitions
+- 💻 Fully typed with TypeScript
+- 📱 Mobile-friendly design
+- 🔄 Real-time benefit status updates
+- 🎯 Partner network management
+- 🌙 Dark/Light theme switcher
+- 🚀 Fast performance with Vite
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- [React](https://reactjs.org/) - UI Framework
+- [TypeScript](https://www.typescriptlang.org/) - Type Safety
+- [Vite](https://vitejs.dev/) - Build Tool
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [Framer Motion](https://www.framer.com/motion/) - Animations
+- [Material-UI](https://mui.com/) - UI Components
+- [React Router](https://reactrouter.com/) - Navigation
+- [React Icons](https://react-icons.github.io/react-icons/) - Icons
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/imadjaha/benefitHub.git
+cd benefitHub
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+2. Install dependencies:
+```bash
+npm install
 ```
+
+3. Start the development server:
+```bash
+npm run dev
+```
+
+4. Open your browser and navigate to [http://localhost:5173](http://localhost:5173).
+
+## Deployment
+
+1. Build the project:
+```bash
+npm run build
+```
+
+2. Deploy to GitHub Pages:
+```bash
+npm run deploy
+```
+
+## Project Structure
+
+```bash
+src/
+├── components/         # Reusable UI components
+├── pages/             # Route components
+├── constants/         # Global constants
+├── assets/           # Static assets
+└── main.tsx          # Application entry point
+```
+
+## Key Components
+
+- BenefitCard - Displays individual benefits
+- PartnerCard - Shows partner information
+- CreateBenefitForm - Form for adding/editing benefits
+- DarkModeSwitcher - Theme toggle component
