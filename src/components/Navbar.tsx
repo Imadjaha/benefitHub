@@ -20,12 +20,12 @@ const NavBar = () => {
 
   const navItems = [
     {
-      path: "/benefitHub",
+      path: "/benefits",
       name: "Home",
       icon: <AiOutlineHome className="text-xl" />,
     },
     {
-      path: "/benefitHub/partners",
+      path: "/partners",
       name: "Partners",
       icon: <FaHandshake className="text-xl" />,
     },
@@ -40,7 +40,7 @@ const NavBar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex-shrink-0">
+          <Link to="/benefits" className="flex-shrink-0">
             <div className="flex items-center justify-center w-30 h-10 bg-purple-600 rounded-lg text-white font-bold text-xl hover:bg-purple-700 transition-colors duration-200">
               Benefithub
             </div>

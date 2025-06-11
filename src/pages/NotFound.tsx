@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function NotFound() {
   return (
@@ -10,7 +10,7 @@ export default function NotFound() {
       className="flex flex-col items-center justify-center min-h-[80vh] theme-bg 
                  px-4 sm:px-6 py-8 sm:py-12 mx-auto max-w-lg text-center"
     >
-      <motion.h1 
+      <motion.h1
         className="text-5xl sm:text-6xl font-bold mb-4 bg-gradient-to-r 
                    from-purple-600 to-blue-600 text-transparent bg-clip-text
                    break-words"
@@ -20,8 +20,8 @@ export default function NotFound() {
       >
         404
       </motion.h1>
-      
-      <motion.h2 
+
+      <motion.h2
         className="text-xl sm:text-2xl font-semibold mb-4 
                    text-gray-800 dark:text-gray-200 break-words"
         initial={{ y: 20, opacity: 0 }}
@@ -30,8 +30,8 @@ export default function NotFound() {
       >
         Page Not Found
       </motion.h2>
-      
-      <motion.p 
+
+      <motion.p
         className="text-base sm:text-lg text-gray-600 dark:text-gray-400 
                    mb-8 text-center max-w-md break-words"
         initial={{ y: 20, opacity: 0 }}
@@ -40,14 +40,14 @@ export default function NotFound() {
       >
         The page you're looking for doesn't exist or has been moved.
       </motion.p>
-      
+
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.3 }}
       >
-        <Link 
-          to="/" 
+        <Link
+          to="/benefits"
           className="inline-flex items-center justify-center
                      min-h-[44px] px-6 py-3 
                      bg-gradient-to-r from-purple-600 to-blue-600 
