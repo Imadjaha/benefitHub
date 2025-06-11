@@ -8,12 +8,13 @@ interface Benefit {
   status: string;
   startDate: string;
   endDate: string;
+  initials?: string;
 }
 
 interface CreateBenefitFormProps {
   onSubmit: (benefit: Benefit & { error?: string }) => void;
   onClose: () => void;
-  initialData?: Benefit | null;
+  initialData: Benefit | null;
 }
 
 export default function CreateBenefitForm({
@@ -22,55 +23,54 @@ export default function CreateBenefitForm({
   initialData,
 }: CreateBenefitFormProps) {
   const [formData, setFormData] = useState({
-    title: initialData?.title || "",
-    discount: initialData?.discount || "",
-    date: initialData?.date || "",
-    discountCode: initialData?.discountCode || "",
-    startDate: initialData?.startDate || "",
-    endDate: initialData?.endDate || "",
-    status: initialData?.status || "",
+     title: initialData?.title ?? "",
+    discount: initialData?.discount ?? "",
+    date: initialData?.date ?? "",
+    discountCode: initialData?.discountCode ?? "",
+    startDate: initialData?.startDate ?? "",
+    endDate: initialData?.endDate ?? "",
+    status: initialData?.status ?? ""
   });
 
   const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const startTimestamp = new Date(formData.startDate).getTime();
-  const endTimestamp = new Date(formData.endDate).getTime();
-  const currentTimestamp = new Date().getTime();
+    const startTimestamp = new Date(formData.startDate).getTime();
+    const endTimestamp = new Date(formData.endDate).getTime();
+    const currentTimestamp = new Date().getTime();
 
-  if (startTimestamp > endTimestamp) {
-    onSubmit({ 
-      ...formData, 
-      error: "Start date cannot be later than end date" 
+    if (startTimestamp > endTimestamp) {
+      onSubmit({
+        ...formData,
+        error: "Start date cannot be later than end date",
+      });
+      return;
+    }
+
+    const status =
+      currentTimestamp >= startTimestamp && currentTimestamp <= endTimestamp
+        ? "Active"
+        : "Inactive";
+
+    onSubmit({
+      ...formData,
+      status,
     });
-    return;
-  }
 
-  const status =
-    currentTimestamp >= startTimestamp && currentTimestamp <= endTimestamp
-      ? "Active"
-      : "Inactive";
+    setFormData({
+      title: "",
+      discount: "",
+      date: "",
+      discountCode: "",
+      startDate: "",
+      endDate: "",
+      status: "",
+    });
 
-  onSubmit({
-    ...formData,
-    status,
-  });
+    onClose();
+  };
 
-  setFormData({
-    title: "",
-    discount: "",
-    date: "",
-    discountCode: "",
-    startDate: "",
-    endDate: "",
-    status: "",
-  });
-
-  onClose();
-};
-
-
-     return (
+  return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
       <div className="bg-white dark:bg-gray-800 rounded-xl p-6 w-full max-w-md shadow-xl">
         <div className="flex justify-between items-center mb-6">
@@ -81,8 +81,18 @@ export default function CreateBenefitForm({
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors rounded-full p-1 hover:bg-gray-100 dark:hover:bg-gray-700"
           >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
@@ -96,7 +106,9 @@ export default function CreateBenefitForm({
               <input
                 type="text"
                 value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, title: e.target.value })
+                }
                 className="w-full p-3 border rounded-lg bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 
                          text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-400
                          focus:ring-2 focus:ring-purple-500 focus:border-transparent
@@ -113,7 +125,9 @@ export default function CreateBenefitForm({
               <input
                 type="text"
                 value={formData.discount}
-                onChange={(e) => setFormData({ ...formData, discount: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, discount: e.target.value })
+                }
                 className="w-full p-3 border rounded-lg bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 
                          text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-400
                          focus:ring-2 focus:ring-purple-500 focus:border-transparent
@@ -130,7 +144,9 @@ export default function CreateBenefitForm({
               <input
                 type="text"
                 value={formData.discountCode}
-                onChange={(e) => setFormData({ ...formData, discountCode: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, discountCode: e.target.value })
+                }
                 className="w-full p-3 border rounded-lg bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 
                          text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-400
                          focus:ring-2 focus:ring-purple-500 focus:border-transparent

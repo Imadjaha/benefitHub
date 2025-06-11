@@ -14,15 +14,16 @@ const getInitials = (title: string) => {
   return initials || title.slice(0, 2).toUpperCase();
 };
 interface Benefit {
-   title: string;
+  title: string;
   discount: string;
   date: string;
   discountCode: string;
   status: string;
+  startDate: string;
+  endDate: string;
   initials?: string;
-  startDate?: string;
-  endDate?: string;
 }
+
 
 export default function BenefitsList() {
   const [advantages, setAdvantages] = useState<Benefit[]>(initialAdvantages);
@@ -65,14 +66,22 @@ export default function BenefitsList() {
     }, 3000);
   };
 
- const handleEdit = (benefit: Benefit) => {
-    setEditingBenefit({
-      ...benefit,
-      startDate: benefit.startDate || '',
-      endDate: benefit.endDate || ''
-    });
-    setShowForm(true);
-  };
+const normalizeBenefit = (b: Benefit): Benefit => ({
+  title: b.title,
+  discount: b.discount,
+  discountCode: b.discountCode,
+  date: b.date || `${b.startDate || ''} - ${b.endDate || ''}`,
+  status: b.status || 'Inactive',
+  startDate: b.startDate || '',
+  endDate: b.endDate || '',
+});
+
+const handleEdit = (benefit: Benefit) => {
+  setEditingBenefit(normalizeBenefit(benefit));
+  setShowForm(true);
+};
+
+
 
 const handleDelete = (benefit: Benefit) => {
   setAdvantages(advantages.filter((b) => b.title !== benefit.title));
@@ -103,13 +112,13 @@ const handleDelete = (benefit: Benefit) => {
         </button>
       </div>
 
-      {showForm && (
-        <CreateBenefitForm
-          onSubmit={handleAddBenefit}
-          onClose={handleCloseForm}
-          initialData={editingBenefit}
-        />
-      )}
+     {showForm && (
+  <CreateBenefitForm
+    onSubmit={handleAddBenefit}
+    onClose={handleCloseForm}
+    initialData={editingBenefit} 
+  />
+)}
 
       {advantages.map((advantage) => (
         <BenefitCard
