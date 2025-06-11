@@ -2,10 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaHandshake } from "react-icons/fa6";
 import DarkModeSwitcher from "./DarkModeSwitcher";
-import {
-  AiOutlineHome,
- 
-} from "react-icons/ai";
+import { AiOutlineHome } from "react-icons/ai";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,19 +18,17 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
- const navItems = [
-  { 
-    path: "/benefitHub", 
-    name: "Home", 
-    icon: <AiOutlineHome className="text-xl" /> 
-  },
-  {
-    path: "/benefitHub/partners",
-    name: "Partners",
-    icon: <FaHandshake className="text-xl" />,
-  },
-];
-   
+  const navItems = [
+    {
+      path: "/benefitHub",
+      name: "Home",
+      icon: <AiOutlineHome className="text-xl" />,
+    },
+    {
+      path: "/benefitHub/partners",
+      name: "Partners",
+      icon: <FaHandshake className="text-xl" />,
+    },
   ];
 
   return (
