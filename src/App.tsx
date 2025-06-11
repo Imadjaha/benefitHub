@@ -10,7 +10,7 @@ function App() {
       <NavBar />
       <main className="flex-1 pt-16">
         <Routes>
-          <Route path="/" element={<Benefits />} />
+          <Route path="/benefitHub" element={<Benefits />} />
           <Route path="/partners" element={<Partners />} />
           <Route path="/404" element={<NotFound />} />
           <Route path="*" element={<Navigate replace to="/404" />} />

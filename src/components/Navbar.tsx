@@ -21,13 +21,18 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { path: "/", name: "Home", icon: <AiOutlineHome className="text-xl" /> },
-    {
-    path: "/partners",
+ const navItems = [
+  { 
+    path: "/benefitHub", 
+    name: "Home", 
+    icon: <AiOutlineHome className="text-xl" /> 
+  },
+  {
+    path: "/benefitHub/partners",
     name: "Partners",
     icon: <FaHandshake className="text-xl" />,
   },
+];
    
   ];
 
