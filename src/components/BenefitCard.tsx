@@ -7,7 +7,6 @@ import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
 import { motion } from "framer-motion";
-
 interface BenefitCardProps {
   initials?: string;
   title: string;

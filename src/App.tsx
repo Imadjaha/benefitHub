@@ -1,7 +1,8 @@
 import NavBar from "./components/Navbar";
 import Benefits from "./pages/Benefits";
 import Partners from "./pages/Partners";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes , Navigate} from "react-router-dom";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -11,6 +12,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Benefits />} />
           <Route path="/partners" element={<Partners />} />
+            {/* 404 handling */}
+          <Route path="/404" element={<NotFound />} />
+          <Route path="*" element={<Navigate replace to="/404" />} />
         </Routes>
       </main>
     </div>

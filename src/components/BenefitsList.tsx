@@ -4,6 +4,7 @@ import { advantages as initialAdvantages } from "../constants";
 import CreateBenefitForm from "./CreateBenefitForm";
 import { FaPlus } from "react-icons/fa6";
 import Snackbar from "./Snackbar";
+import type { Severity } from "./Snackbar";
 
 const getInitials = (title: string) => {
   const words = title.split(" ");
@@ -12,38 +13,39 @@ const getInitials = (title: string) => {
   if (words.length > 1) initials += words[1][0].toUpperCase();
   return initials || title.slice(0, 2).toUpperCase();
 };
-export default function BenefitsList() {
-  const [advantages, setAdvantages] = useState(initialAdvantages);
-  const [showForm, setShowForm] = useState(false);
-  const [editingBenefit, setEditingBenefit] = useState<any>(null);
-  const [snackbar, setSnackbar] = useState({
-    show: false,
-    message: "",
-    severity: "success" as const,
-  });
+interface Benefit {
+   title: string;
+  discount: string;
+  date: string;
+  discountCode: string;
+  status: string;
+  initials?: string;
+  startDate?: string;
+  endDate?: string;
+}
 
-  const handleAddBenefit = (newBenefit: any) => {
+export default function BenefitsList() {
+  const [advantages, setAdvantages] = useState<Benefit[]>(initialAdvantages);
+  const [showForm, setShowForm] = useState(false);
+  const [editingBenefit, setEditingBenefit] = useState<Benefit | null>(null);
+ const [snackbar, setSnackbar] = useState<{
+  show: boolean;
+  message: string;
+  severity: Severity;
+}>({
+  show: false,
+  message: "",
+  severity: "success",
+});
+
+  const handleAddBenefit = (newBenefit: Benefit & { error?: string }) => {
     if (newBenefit.error) {
       setSnackbar({
         show: true,
         message: newBenefit.error,
-        severity: "error",
+        severity: "error" as Severity,
       });
       return;
-    }
-
-    if (editingBenefit) {
-      // Update existing benefit
-      setAdvantages(
-        advantages.map((benefit) =>
-          benefit.title === editingBenefit.title ? newBenefit : benefit
-        )
-      );
-      setSnackbar({
-        show: true,
-        message: "Benefit updated successfully",
-        severity: "success",
-      });
     } else {
       // Add new benefit
       setAdvantages([...advantages, { ...newBenefit }]);
@@ -63,23 +65,27 @@ export default function BenefitsList() {
     }, 3000);
   };
 
-  const handleEdit = (benefit: any) => {
-    setEditingBenefit(benefit);
+ const handleEdit = (benefit: Benefit) => {
+    setEditingBenefit({
+      ...benefit,
+      startDate: benefit.startDate || '',
+      endDate: benefit.endDate || ''
+    });
     setShowForm(true);
   };
 
-  const handleDelete = (benefit: any) => {
-    setAdvantages(advantages.filter((b) => b.title !== benefit.title));
-    setSnackbar({
-      show: true,
-      message: "Benefit deleted successfully",
-      severity: "success",
-    });
+const handleDelete = (benefit: Benefit) => {
+  setAdvantages(advantages.filter((b) => b.title !== benefit.title));
+  setSnackbar({
+    show: true,
+    message: "Benefit deleted successfully",
+    severity: "success" as Severity,
+  });
 
-    setTimeout(() => {
-      setSnackbar((prev) => ({ ...prev, show: false }));
-    }, 3000);
-  };
+  setTimeout(() => {
+    setSnackbar((prev) => ({ ...prev, show: false }));
+  }, 3000);
+};
 
   const handleCloseForm = () => {
     setShowForm(false);

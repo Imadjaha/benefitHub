@@ -1,9 +1,19 @@
 import { useState } from "react";
 
+interface Benefit {
+  title: string;
+  discount: string;
+  date: string;
+  discountCode: string;
+  status: string;
+  startDate: string;
+  endDate: string;
+}
+
 interface CreateBenefitFormProps {
-  onSubmit: (benefit: any) => void;
+  onSubmit: (benefit: Benefit & { error?: string }) => void;
   onClose: () => void;
-  initialData?: any;
+  initialData?: Benefit | null;
 }
 
 export default function CreateBenefitForm({

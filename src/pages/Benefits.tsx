@@ -1,6 +1,4 @@
-import Snackbar from "../components/Snackbar";
 import ScrollUpButton from "../components/ScrollUpButton";
-import BenefitCard from "../components/BenefitCard";
 import BenefitsList from "../components/BenefitsList";
 import { motion } from "framer-motion";
 
@@ -14,7 +12,6 @@ export default function Benefits() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollUpButton />
-        {/* <BenefitCard/> */}
         <BenefitsList />
       </div>
     </motion.div>
